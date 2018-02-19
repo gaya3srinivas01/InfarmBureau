@@ -1,0 +1,44 @@
+[
+	{	
+    "fName": "Suman",
+    "lName": "Rawat",
+    "address": "222, Rohini, Delhi",
+    "city": "Delhi",
+    "state": "Delhi",
+    "zip": 111444,
+    "policyNumber": "AB-123",
+    "membershipNumber": "12345",
+    "phNumber": 9897656789,
+    "email": "abc@gmail.com",
+    "dob": "02-02-1993",
+    "socialSecurity": "4567788976"
+	},
+	{
+	"fName": "Neelima",
+    "lName": "",
+    "address": "222, New York",
+    "city": "New York",
+    "state": "New York",
+    "zip": 123123,
+    "policyNumber": "CD-23",
+    "membershipNumber": "16745",
+    "phNumber": 9897666689,
+    "email": "zxd@gmail.com",
+    "dob": "02-02-1996",
+    "socialSecurity": "45677885556"
+	},
+	{
+	"fName": "Nitish",
+    "lName": "sharma",
+    "address": "222, Paris",
+    "city": "Paris",
+    "state": "Paris",
+    "zip": 879876,
+    "policyNumber": "CTTD-223",
+    "membershipNumber": "18945",
+    "phNumber": 9899086689,
+    "email": "ztyy@gmail.com",
+    "dob": "07-02-1990",
+    "socialSecurity": "4567787811"
+	}
+]
