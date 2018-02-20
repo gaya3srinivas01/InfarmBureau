@@ -1,3 +1,44 @@
-<p>
-  client-list works!
-</p>
+<div *ngIf="clientdatalist" class="container">
+    <div class="jumbotron">
+    <h2>Client List</h2> <h2>{{clientData}}</h2>
+    <p *ngIf="recordsOverflow" style="color : red; text-align: left; margin-left: 1%; ">Too many records to display, only 200 records can be displayed. </p>
+  </div> 
+    <br/><br/>     
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Street Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip code</th>
+          <th>Policy Number</th>
+          <th>Membership Number</th>
+          <th>Phone Number</th>
+          <th>Client email Address</th>
+          <th>Date of Birth</th>
+          <th>Social Security</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let clientlstdata of exixtingClientData" >
+          <td>{{clientlstdata.fName}}</td>
+          <td>{{clientlstdata.lName}}</td>
+          <td>{{clientlstdata.address}}</td>
+          <td>{{clientlstdata.city}}</td>
+          <td>{{clientlstdata.state}}</td>
+          <td>{{clientlstdata.zip}}</td>
+          <td>{{clientlstdata.policyNumber}}</td>
+          <td>{{clientlstdata.membershipNumber}}</td>
+          <td>{{clientlstdata.phNumber}}</td>
+          <td>{{clientlstdata.email}}</td>
+          <td>{{clientlstdata.dob}}</td>
+          <td>{{clientlstdata.socialSecurity}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div *ngIf="!clientdatalist">
+<app-noresult-component></app-noresult-component>
+</div>

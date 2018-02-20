@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { IClient } from '../Models/common';
 import { ClientService } from '../services/client.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-component',
@@ -10,8 +11,10 @@ import { ClientService } from '../services/client.service';
 })
 export class SearchComponent implements OnInit {
   myForm: FormGroup;
+  valid: boolean = true;
+  clientData: any[];
 
-  constructor(private fb: FormBuilder, private _clientservice : ClientService) { }
+  constructor(private router: Router, private fb: FormBuilder, private _clientservice : ClientService) { }
 
   ngOnInit() {
     this.createForm();
@@ -29,22 +32,38 @@ export class SearchComponent implements OnInit {
       zip: [''],
       policyNumber: [''],
       membershipNumber: [''],
-      phNumber: [""],
+      phNumber: [''],
       email: [''],
-      dob: [""],
-      socialSecurity: [''],
+      dob: [''],
+      socialSecurity: ['']
       //  title: ['', [<any>Validators.required]],
-      vp: [''],
     });
   }
 
   searchData(client: IClient, isValid: boolean, btnName: string) {
-    this._clientservice.getClientList()
+    if (!(
+    (client.address)  ||
+    (client.city )  ||
+    (client.dob )  ||
+    (client.email )  ||
+    (client.lName )  ||
+    (client.membershipNumber )  ||
+    (client.phNumber )  ||
+    (client.policyNumber )  ||
+    (client.socialSecurity )  ||
+    (client.state )  ||
+    (client.zip )  )) {
+      this.valid = false;
+      
+    }
+    else 
+    {
+      this.valid = true;
+      this._clientservice.getClientList()
     .subscribe(data => {
-      console.log("Hello" + data);
+      this.clientData = data;
+      this.router.navigateByUrl('clientList');
     });
-
+    }    
   }
 }
-
-

@@ -80,12 +80,13 @@
     </div>
     <hr>
     <div class="row">
-      <button style="width: 18%; font-size: 19px; margin-left: 41%;" type="submit" [disabled]="!myForm.valid" (click)="searchData(myForm.value, myForm.valid, 'search');"
+        <p *ngIf="!valid" style="color : red; text-align: left; margin-left: 2%; " id= "errorMessage">Please fill one of the textbox</p>
+    </div>
+    <div class="row">
+      <button style="width: 18%; font-size: 19px; margin-left: 41%;" type="submit" [disabled]="" (click)="searchData(myForm.value, myForm.valid, 'search');"
         class="btn btn-primary">Search</button>
     </div>
     <br/><br/>
   </form>
 
 </div>
-
-<app-client-list></app-client-list>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ClientService } from '../services/client.service';
 
 @Component({
   selector: 'app-client-list',
@@ -7,9 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientListComponent implements OnInit {
 
-  constructor() { }
+  existingAppID: any;
+  lastname: any;
+  firstname: any;
+  exixtingClientData: any[];
+  clientdatalist: boolean = false;
+  recordsOverflow: boolean = false;
+
+  constructor(private route: ActivatedRoute, private _clientservice: ClientService) { }
 
   ngOnInit() {
-  }
 
+    // this.route.params.subscribe((data) => {
+    //   if (data.id) {
+    //      this.existingAppID = data.id || ''; // existingAppID is unique ID from mongodb.
+    //   }
+    //   debugger;     });
+    if (this._clientservice.clientList) {
+      if (this._clientservice.clientList.length <= 200) {
+        this.exixtingClientData = (this._clientservice.clientList);
+        this.clientdatalist = true;
+      }
+      else if (this._clientservice.clientList.length > 200) {
+        this.recordsOverflow = true;
+        this.exixtingClientData = (this._clientservice.clientList).slice(0, 199);
+        this.clientdatalist = true;
+      }
+    }
+    else {
+      this.clientdatalist = false;
+    }
+  }
 }
+

@@ -10,6 +10,7 @@ import { HttpModule } from '@angular/http';
 @Injectable()
 export class ClientService {
 
+  public clientList: IClient[];
   constructor(private http: Http) { }
 
   getClientList(): Observable<IClient[]> {
@@ -18,10 +19,17 @@ export class ClientService {
     const reqParams = new URLSearchParams();
     const options = new RequestOptions({ headers: header, params: reqParams });
 
-    return this.http.get( '../app/data/clientList.json', options)
-          .map((data: Response) => {
-debugger;
-            return data.json() as IClient[];
-          });
+    return this.getclientData(options);
+  }
+
+  private getclientData(options: RequestOptions): Observable<IClient[]> {
+    return this.http.get('assets/data/clientList.json', options)
+      .map((data: Response) => {
+        debugger;
+        this.clientList = data.json();
+        return data.json() as IClient[];
+      })
+      .catch((error: Response) => Observable.throw(error.json()));
+      
   }
 }
